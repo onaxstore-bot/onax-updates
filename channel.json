@@ -2,17 +2,17 @@
   "payload": {
     "format": 1,
     "product": "ONAX_TECHMINER",
-    "version": "0.4.0",
-    "sequence": 5,
+    "version": "0.4.1",
+    "sequence": 6,
     "min_python": [
       3,
       10
     ],
-    "artifact_url": "https://raw.githubusercontent.com/onaxstore-bot/onax-updates/main/ONAX_Release_0.4.0.zip",
+    "artifact_url": "https://raw.githubusercontent.com/onaxstore-bot/onax-updates/main/ONAX_Release_0.4.1.zip",
     "files": {
       "app/README.md": {
-        "size": 2408,
-        "sha256": "d98ffa30b7fad7ebe1b9ba6b4afe7dae84a8dd1172cecc384037dd09c6fc6110"
+        "size": 2518,
+        "sha256": "159bf3db724d08ba661cc9798f695b0695022b25c03c589c07d99b0c7b5fb440"
       },
       "app/cj_client.py": {
         "size": 8475,
@@ -31,8 +31,8 @@
         "sha256": "f89acf2c1ef37beb91edd51dfbdba75f2051482630750df54206a51ce7865f68"
       },
       "app/mining_cj.py": {
-        "size": 5433,
-        "sha256": "e74d63392aa9d2636372dd43b28940e46b867e0622def9aff766b7c4f453c567"
+        "size": 5964,
+        "sha256": "232e0ec0e92a4ae719ca89c796131e6eac4b5ba1ae835b2447b915901fd8c881"
       },
       "app/mining_runtime.py": {
         "size": 6885,
@@ -56,7 +56,7 @@
       },
       "app/release_health.py": {
         "size": 536,
-        "sha256": "2b711956dfee024c4c7b0adf9012025b20684c775a7159ca6635e935ad743bd9"
+        "sha256": "328177b5d6ccbc5808623f3c30f9abbf66e678554fc7b87d181d325f3c7708f2"
       },
       "app/shopify_snapshot.json": {
         "size": 12,
@@ -79,8 +79,8 @@
         "sha256": "22c913920ed5e73938f18c5e32f77bf96adb2676a9be30f65b4d0bfe1dcb7a23"
       },
       "app/tests/test_mining_cj.py": {
-        "size": 4304,
-        "sha256": "043a7d0f1f5536f407a540ff9482d2ff1a93f4f2e0134484a4ed4e60c03a4bad"
+        "size": 4642,
+        "sha256": "e9665409821b210823349432e6834d7d829230e5e5d31f730170f3f31a60f62e"
       },
       "app/tests/test_pricing_scenarios.py": {
         "size": 1720,
@@ -96,5 +96,5 @@
       }
     }
   },
-  "signature": "kVLax+uk+NfPgWX02JvUIAHzZwXKeakEkoNNyYtOE694D7MCPMZBkyXo2325hZ3UxdC+6b+wWOiVyWJhtlKl4rKFYZK2Cs04z78BdsxGg/p9uNDZFtBcveJ/+i7MReSMEl9deR4WgV3zXt9vLs28DM9jUcE39Lizxe3URIJBl9ajqvy1vIrH09Hh7G/tMrTfrotnNfuSnewU55OW/3LV+k7g8JCR4/xDIZmHELXvHf87WC4lsOMl5EWbdDhVe+58rdKUtzNCVkxHJTmlG8D4YDXrCXZ0iOtYDFICwmjRzAeB9PD2WCPFCLjSoSSgQ/BK786lD4cV/Av+WYc3KV8I4eZhyAYr06N4ftJDoz/LanfhjK3nhE6SQdxuMsJgE8DBTaCn1+QzB4J9Q2MP0bLFl7vcMyw2FZaPsehRAN5RC7r+FdRLKYtE8SZWx7ADXkq58fLV1tsJwF5M2kq0LlaFBMjVS7l0G0tYxzh4gW+YM0V1cJPVjv7GUgCH4x4ZRGfb"
+  "signature": "D4R2gHaNUPVZ3YYR5z1liI4liFU5C/ipD1cgWqWUKgCzXBjLLPzAZCXcnZS3IVi+aBoaOGiy2BRintIrCtO0hYbO4/H2PggWXDbVaFMlwFCGEx1zJED9hubnD1NtmVErfVr9L5cDkt85f6+9FwXILAN7s4rxtJdudw7Hd3OJ4P+nNqbrISFb8ZvFb6rb2sLftyOjZ4TtOnTfJSPk5uiOK2oWUzNQhZdMKpUGQcjFjovzsJwZQRyL7yLIwWurvwHgXi+1+WykZsW+Eci/YviJwQOKUE8EZqKomXxxwNAY1I4w+72jQJvswbZ0bYrg4MyJhfBMPJJS6biQlO99gYxl1aHGF9hDXQWDv0JkwX7gJHPT8ueds7+uCqh1fbcg8USCyL1VmB4Bm748xGSsAida+TG6XIEQUx6iiwavKGuyoWkGlM08IRJksTwYXY9Fqnfnl0tFxVsEPwZdTU2osVmqwtYnRtClrhZnovoTiAn/CSiLQSz7K8V4P6LqnbNSbyIa"
 }
