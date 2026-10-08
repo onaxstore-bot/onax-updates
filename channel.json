@@ -1,0 +1,84 @@
+{
+  "payload": {
+    "format": 1,
+    "product": "ONAX_TECHMINER",
+    "version": "0.3.1",
+    "sequence": 4,
+    "min_python": [
+      3,
+      10
+    ],
+    "artifact_url": "https://raw.githubusercontent.com/onaxstore-bot/onax-updates/main/ONAX_Release_0.3.1.zip",
+    "files": {
+      "app/README.md": {
+        "size": 212,
+        "sha256": "a6c993b8cb54c96f68c5ea0bbc51b1fe5fb7d7031486e3928f87b833fcb72fc3"
+      },
+      "app/cj_client.py": {
+        "size": 8231,
+        "sha256": "06caec36d70ff9c33c22cbb95a3832eb4a3e110c1bded38a36523b7fe1e7b43b"
+      },
+      "app/consultar_cj.py": {
+        "size": 3455,
+        "sha256": "a5bfd50a956f403f1f8347d91db9af947f10a7e133d23f75c347ddff0dc45ac9"
+      },
+      "app/core.py": {
+        "size": 12421,
+        "sha256": "3682d08ec44fea35169b0793b26a78c0a7a256896d8f754a9c39368d3ab611a0"
+      },
+      "app/mineracao.py": {
+        "size": 3663,
+        "sha256": "c4714bd306bd8e1c54800966f0805d01bdee278d8a30b4d0dd6affabdef3c4b2"
+      },
+      "app/pesquisa_multiplataforma.json": {
+        "size": 14,
+        "sha256": "cc46325969854e1aa757ff4b78985ac169ae2f9cea0eb6c6a2e50de8567e122e"
+      },
+      "app/pre_catalogo.json": {
+        "size": 13,
+        "sha256": "eeb85c2675888473ec64b7580aa0c76c6fd6b2bd51828870286ef202ad89dae2"
+      },
+      "app/pricing_scenarios.py": {
+        "size": 1064,
+        "sha256": "418410c50ee4b3711267824318e686ecf9869f6a68786ba87daad330d0190e46"
+      },
+      "app/prontidao.py": {
+        "size": 5297,
+        "sha256": "be828fffe551eb7cef8d25791219d7e857209fb7e73e5461538c5dfcdaabe4cd"
+      },
+      "app/release_health.py": {
+        "size": 536,
+        "sha256": "0707c69cf6f016ddb828a92eb14113e984cfcf43cb33266fdd79f1fde1dfed23"
+      },
+      "app/shopify_snapshot.json": {
+        "size": 12,
+        "sha256": "598cf9d2ffa249837533110abba1c8831da3d1ce42bd08a9d8f2001875f82310"
+      },
+      "app/tests/test_cj_client.py": {
+        "size": 4252,
+        "sha256": "c5af8056c9037adaca3d842fb2a7202adeb1edfd79db93f85bce5197271bc8ee"
+      },
+      "app/tests/test_consultar_cj.py": {
+        "size": 1977,
+        "sha256": "efb210855a6d8bb4e6686b4c164857a29c2255de487df2f7d8a95c170e57fc79"
+      },
+      "app/tests/test_core.py": {
+        "size": 7095,
+        "sha256": "11eeab59f0187911b859d737bf8cacbfe831574081a83c6b51ff4d606df9f0d4"
+      },
+      "app/tests/test_mineracao.py": {
+        "size": 2940,
+        "sha256": "22c913920ed5e73938f18c5e32f77bf96adb2676a9be30f65b4d0bfe1dcb7a23"
+      },
+      "app/tests/test_pricing_scenarios.py": {
+        "size": 1720,
+        "sha256": "77c0a83b34d09f68ad2ce1353788df3d3a461ac247e8e353c01fa1ff99d273b9"
+      },
+      "app/tests/test_prontidao.py": {
+        "size": 3056,
+        "sha256": "5909d78be6ac1154cdeac358a83edeb34ea062830810dac0767d102946a5a968"
+      }
+    }
+  },
+  "signature": "eTzPe7XS3xXTukMAtjn4hSM6EBDY4Jgptp4a1Wxv2M5uH9shw1Td0ZZxpOKXr8ZRxoiDTZd+CYMerc2iEbs5L+Umrd+MzXCB2xUCiJykOAkHZ2I1iENbt8QXrEScosxuqGuKitM9kCcVm5YmIy/V9Os0EOcSheZOAxEfqLe8yjB7XuCm4hsSbzDj7nMC69xHM8/5hPgdz2WzvVe3P0JlNDQH+NIWHrxeE7CjiZWzq6claB1xxPEo7j7zhtkU2l4l4n0SkkN6g8g8iultvV4Z25ZslpelXz83YYSnbs0hqG3/5PyDqatOaganW2HUmCj8ry2Pgq/+aXWjBXTgSlVkzfonjn84gRCQkXNTTC90AaUvreYF+MZ7SUJobUK2cgnPQXnvjM5h2s5RLUe7ypgSGpoZVP4rnPExVi1kUkprCjHBkeAqpmDPfk2m97MKvClMvC4x8PVVvSXzpbOXAIFUWbr4oXJXJ7ZfP8NstWZVE66EGYJ8v9TuhZRluIkA4nRf"
+}
