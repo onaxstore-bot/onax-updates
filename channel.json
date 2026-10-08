@@ -2,21 +2,21 @@
   "payload": {
     "format": 1,
     "product": "ONAX_TECHMINER",
-    "version": "0.4.2",
-    "sequence": 7,
+    "version": "0.5.0",
+    "sequence": 8,
     "min_python": [
       3,
       10
     ],
-    "artifact_url": "https://raw.githubusercontent.com/onaxstore-bot/onax-updates/main/ONAX_Release_0.4.2.zip",
+    "artifact_url": "https://raw.githubusercontent.com/onaxstore-bot/onax-updates/main/ONAX_Release_0.5.0.zip",
     "files": {
       "app/README.md": {
-        "size": 2667,
-        "sha256": "a165140acac9873c44b8c00a36977ead0ff8d3ac50531cc5abd6c5345dd0936a"
+        "size": 3440,
+        "sha256": "b526c32541a21b64484bce128d2a71e4571451c3cbee15bffb25bbcb94a571b0"
       },
       "app/cj_client.py": {
-        "size": 8475,
-        "sha256": "7594fd5b93ea26e025c3c9637fb5ee996d771b46b1e746d2da92358aa8649d50"
+        "size": 8743,
+        "sha256": "31133fc51de29b066fb5fc7b25f385e5704945ca5b7252d07d3e715ca9fb649c"
       },
       "app/consultar_cj.py": {
         "size": 4467,
@@ -31,12 +31,12 @@
         "sha256": "f89acf2c1ef37beb91edd51dfbdba75f2051482630750df54206a51ce7865f68"
       },
       "app/mining_cj.py": {
-        "size": 5964,
-        "sha256": "232e0ec0e92a4ae719ca89c796131e6eac4b5ba1ae835b2447b915901fd8c881"
+        "size": 7760,
+        "sha256": "3de27f47a001273954a03a73454d32e503236c542681a14de13e5f943d4f78d2"
       },
       "app/mining_runtime.py": {
-        "size": 7346,
-        "sha256": "8d357cf37ca31320eaefd367c514e31ac8259f1c8d37d2683e8ac27275864943"
+        "size": 8712,
+        "sha256": "cccb65c324ecab8479bf103395ecd99a82407ee940bed49c00df81609d808b6b"
       },
       "app/pesquisa_multiplataforma.json": {
         "size": 14,
@@ -56,7 +56,7 @@
       },
       "app/release_health.py": {
         "size": 536,
-        "sha256": "09db1382c5d517baff30f8f6c2023382330c5012e8a89ff1863a27b18fba1209"
+        "sha256": "e7ba72aa3760673bbe482655da6dc4336619f024f97a0633e631e615861025df"
       },
       "app/shopify_snapshot.json": {
         "size": 12,
@@ -82,6 +82,10 @@
         "size": 5612,
         "sha256": "2ab4fa0f52027f4759cc4d693f4bc8455819970a383ef55bb9a33326bf93b7c9"
       },
+      "app/tests/test_mining_rotation.py": {
+        "size": 3794,
+        "sha256": "93eb7590c95ad8bf11cf5b41f9796b7cdb13b532516e5df14a0c9fd8e2e3900a"
+      },
       "app/tests/test_pricing_scenarios.py": {
         "size": 1720,
         "sha256": "77c0a83b34d09f68ad2ce1353788df3d3a461ac247e8e353c01fa1ff99d273b9"
@@ -96,5 +100,5 @@
       }
     }
   },
-  "signature": "YnGOOXq5D8xvGkKTAr0CyyWD2Cy61WD5iin5Rw1HW89ekHOYoBlAbEYbGBpCHSOjLPHpG+Ub1RzuHDCMdzADkkv3KGmXT8ymafxFWoDCMm+/4VWQVFQb1BZ1YNLeNSJ/2kgtY4eA7Rb5HSWj4nHKdGUMGDfIiZ882p6NPVOAvI3wX2rIIyMqF/2GTplvUzb7GAV2xipTu9I54y93iRFDoyxlAn/oe4Q7+KmUMLe52221IKEImAF7iN5jYQ97AtS8dluDf18dxe9YMG0h9JffZdtOBsSlLSuDHCQ8VBEMxO1o0eAYLNP2klrw9ovjm3lbtxOodhXQdj7yaeUxXqaL7I09a0L5HK/wRWjeqArmNqHGqkk60VtAMz/LJOPu4cD15VE083JJF6nI2Pb9Xz4FHgTQ6RjO/mtoO6iCgqiFgJTIC5QRCNqB6ul8wRuX0lyStzV5e2X1ctKRibeDA+O18g7GtRBo06Rbc+YPygO4HTSNOg72Q3xbxnR3iu2Hj/xM"
+  "signature": "C/sygctffFeqvhCZ+MUqGsbOFN2hlDYD0M37KWRsIKl7DdLAOkJcddj2LAyDw47WDxcd3Lyuu0oZGVthfj5skk+ul+t7LxsqvAuKepn2u6auCfV88XyRYcDlY7ZzHjAxJylUK7lqBXwMbwHPLRg5gADDP83L/xv92sVBrWHK1vHUg/6h26vGmWIBbf0SdhjrowVW0h8yB6nbNBR+Yrd3KWt7AQOGRpOGnYtCjhmzVXvslwny2Z6eifo8Je8n7E2IzuYXH6Gz9lWIBakuwma3mggA5rHKATH8D8eCoDb+z2Lg3vnGkyg/EjTFzIIBZBHXGCzz9piuhUlgGJWwCefaiiDmAnbTTiU7aVsd3BIaZuCYvsWHJlV9M3aXqF0xjFWBu9KEfDdKrMF+Jnui5bM2okPiDJMvGc96TCm+Heu50obZOWs435QEEZtCZZy/zU92TpriNIhIBlWsmSPaddv3y6K3roja0c+cL401Z88jL3cfxSwWzYQRoSFrF7Rw5oZ2"
 }
