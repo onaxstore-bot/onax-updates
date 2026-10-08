@@ -1,4 +1,4 @@
-# ONAX TechMiner 0.4.1 — descoberta CJ
+# ONAX TechMiner 0.4.2 — descoberta CJ
 
 O atalho existente ONAX - Consultar CJ passa a ativar a descoberta de produtos CJ no Windows. Na primeira execução, pede a API Key em campo oculto e explica seu armazenamento cifrado por DPAPI para a conta atual do Windows. A chave só é salva depois de aceita pela CJ. Nenhuma chave entra no repositório ou nos relatórios.
 
@@ -17,3 +17,5 @@ Não reinstalar: o controlador 0.3.1 existente pode aplicar esta versão assinad
 Referências: https://developers.cjdropshipping.com/en/api/api2/api/product.html ; https://developers.cjdropshipping.com/en/api/api2/api/auth.html ; https://learn.microsoft.com/en-us/windows/win32/seccrypto/example-c-program-using-cryptprotectdata
 
 A análise intercala as categorias para distribuir o limite de 12 produtos entre os seis termos pesquisados.
+
+O agendamento também tem um início por horário em seis horas após a ativação, para funcionar sem precisar sair e entrar novamente no Windows.
