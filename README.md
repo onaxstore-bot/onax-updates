@@ -1,4 +1,4 @@
-# ONAX TechMiner 0.5.0 — descoberta CJ
+# ONAX TechMiner 0.5.1 — descoberta CJ
 
 O atalho existente ONAX - Consultar CJ passa a ativar a descoberta de produtos CJ no Windows. Na primeira execução, pede a API Key em campo oculto e explica seu armazenamento cifrado por DPAPI para a conta atual do Windows. A chave só é salva depois de aceita pela CJ. Nenhuma chave entra no repositório ou nos relatórios.
 
@@ -22,4 +22,15 @@ O agendamento também tem um início por horário em seis horas após a ativaç�
 
 A rodada seguinte avança somente após conclusão sem erro. O relatório anterior é preservado como mineracao_cj_anterior.json. O painel mostra origem e estoque pronto da rota. Credenciais, configuração e relatórios existentes permanecem separados da atualização.
 
-Verificação offline: 65 testes (um teste DPAPI específico do Windows executa no HP antes da aplicação da atualização). A presença de estoque não aprova margem, produto ou entrega.
+Verificação offline: 73 testes (um teste DPAPI específico do Windows executa no HP antes da aplicação da atualização). A presença de estoque não aprova margem, produto ou entrega.
+
+
+Versão 0.5.1: custos comerciais e amostra de frete
+
+O relatório acrescenta limites inferiores usando taxas de referência de 2% Shopify e 6,40% PayPal internacional para contas brasileiras, além de publicidade de 5% e reserva de 2%. A referência pública não comprova a tarifa específica da conta. Tarifa fixa PayPal, mensalidade, tributos, câmbio, devoluções e outras despesas ainda precisam ser informados. Nenhum limite inferior é preço aprovado.
+
+Após uma busca concluída, faz no máximo nove consultas adicionais de frete: até três variantes com estoque pronto, uma unidade e CEPs americanos 10001, 90001 e 60601. Interrompe na primeira falha e mantém as observações parciais. Não envia pedidos, pagamentos ou dados pessoais. A cotação simples por CEP permanece preliminar.
+
+O cálculo completo pode ler data/custos_comerciais.json, que permanece privado e preservado nas atualizações. Valores fixos devem estar em USD nesta análise. Campos exigidos: currency, shopify_monthly, planned_monthly_orders, shopify_transaction_rate, paypal_rate, paypal_fixed_fee e sku_costs. Cada SKU requer tax_and_fx, returns_reserve, other_overhead e other_fee_rate. Nenhuma conversão é presumida; nenhum campo desconhecido é substituído por zero. A mensalidade é dividida pelo número de pedidos do cenário e arredondada para cima. Menos vendas aumentam o custo unitário. Sem vendas, precificar produtos não paga a assinatura.
+
+As taxas são frações decimais (2% = 0.02), e os cenários completos continuam sem permissão de publicar ou comprar. Nenhuma chave, relatório, conta, fatura ou configuração financeira real está incluída no pacote.

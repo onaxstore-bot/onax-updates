@@ -2,21 +2,25 @@
   "payload": {
     "format": 1,
     "product": "ONAX_TECHMINER",
-    "version": "0.5.0",
-    "sequence": 8,
+    "version": "0.5.1",
+    "sequence": 9,
     "min_python": [
       3,
       10
     ],
-    "artifact_url": "https://raw.githubusercontent.com/onaxstore-bot/onax-updates/main/ONAX_Release_0.5.0.zip",
+    "artifact_url": "https://raw.githubusercontent.com/onaxstore-bot/onax-updates/main/ONAX_Release_0.5.1.zip",
     "files": {
       "app/README.md": {
-        "size": 3440,
-        "sha256": "b526c32541a21b64484bce128d2a71e4571451c3cbee15bffb25bbcb94a571b0"
+        "size": 5112,
+        "sha256": "0657ce3650cdfade2344adbe26345351a83779463d1bc013080f941e138505ce"
       },
       "app/cj_client.py": {
         "size": 8743,
         "sha256": "31133fc51de29b066fb5fc7b25f385e5704945ca5b7252d07d3e715ca9fb649c"
+      },
+      "app/commercial_research.py": {
+        "size": 4223,
+        "sha256": "25b17cfb94cc9a11fe2a8a379d09edc1dbee1c55319d7cd1b1477208246c5268"
       },
       "app/consultar_cj.py": {
         "size": 4467,
@@ -35,8 +39,8 @@
         "sha256": "3de27f47a001273954a03a73454d32e503236c542681a14de13e5f943d4f78d2"
       },
       "app/mining_runtime.py": {
-        "size": 8712,
-        "sha256": "cccb65c324ecab8479bf103395ecd99a82407ee940bed49c00df81609d808b6b"
+        "size": 10355,
+        "sha256": "8e9d807955affa7bbd1cc60562375100f0cc6b5f7a10f5899e49369b8135f5c4"
       },
       "app/pesquisa_multiplataforma.json": {
         "size": 14,
@@ -47,8 +51,8 @@
         "sha256": "eeb85c2675888473ec64b7580aa0c76c6fd6b2bd51828870286ef202ad89dae2"
       },
       "app/pricing_scenarios.py": {
-        "size": 1064,
-        "sha256": "418410c50ee4b3711267824318e686ecf9869f6a68786ba87daad330d0190e46"
+        "size": 2593,
+        "sha256": "db87236ff03fc7384ba6c8187be606e06ecad1e949c32e63e69733a6cd277b85"
       },
       "app/prontidao.py": {
         "size": 5297,
@@ -56,7 +60,7 @@
       },
       "app/release_health.py": {
         "size": 536,
-        "sha256": "e7ba72aa3760673bbe482655da6dc4336619f024f97a0633e631e615861025df"
+        "sha256": "5e5554134c0f135099d33fe1bd1dea92c120790a6eee86d355c26152a389a4ea"
       },
       "app/shopify_snapshot.json": {
         "size": 12,
@@ -65,6 +69,10 @@
       "app/tests/test_cj_client.py": {
         "size": 4252,
         "sha256": "c5af8056c9037adaca3d842fb2a7202adeb1edfd79db93f85bce5197271bc8ee"
+      },
+      "app/tests/test_commercial_research.py": {
+        "size": 3839,
+        "sha256": "cb7e312318a234da9379879d4cb11b5ecfcad0f0b9d2e5999dbc8c12f7ad1ad0"
       },
       "app/tests/test_consultar_cj.py": {
         "size": 1977,
@@ -87,8 +95,8 @@
         "sha256": "93eb7590c95ad8bf11cf5b41f9796b7cdb13b532516e5df14a0c9fd8e2e3900a"
       },
       "app/tests/test_pricing_scenarios.py": {
-        "size": 1720,
-        "sha256": "77c0a83b34d09f68ad2ce1353788df3d3a461ac247e8e353c01fa1ff99d273b9"
+        "size": 3366,
+        "sha256": "c297c2092cfcd2abe1672d0cac42945947d07e276b21828b330602a47a7fec48"
       },
       "app/tests/test_prontidao.py": {
         "size": 3056,
@@ -100,5 +108,5 @@
       }
     }
   },
-  "signature": "C/sygctffFeqvhCZ+MUqGsbOFN2hlDYD0M37KWRsIKl7DdLAOkJcddj2LAyDw47WDxcd3Lyuu0oZGVthfj5skk+ul+t7LxsqvAuKepn2u6auCfV88XyRYcDlY7ZzHjAxJylUK7lqBXwMbwHPLRg5gADDP83L/xv92sVBrWHK1vHUg/6h26vGmWIBbf0SdhjrowVW0h8yB6nbNBR+Yrd3KWt7AQOGRpOGnYtCjhmzVXvslwny2Z6eifo8Je8n7E2IzuYXH6Gz9lWIBakuwma3mggA5rHKATH8D8eCoDb+z2Lg3vnGkyg/EjTFzIIBZBHXGCzz9piuhUlgGJWwCefaiiDmAnbTTiU7aVsd3BIaZuCYvsWHJlV9M3aXqF0xjFWBu9KEfDdKrMF+Jnui5bM2okPiDJMvGc96TCm+Heu50obZOWs435QEEZtCZZy/zU92TpriNIhIBlWsmSPaddv3y6K3roja0c+cL401Z88jL3cfxSwWzYQRoSFrF7Rw5oZ2"
+  "signature": "WUt8qQP97nJ0AoLKu8IA/1o8VHsP4PIDtVgvSqdWOxo804LjOFHGUD36+N+Dfc15GZEBM2SMqz5ufrPK90YOpZny3/FS1kHJujJR2cJ6O3R0LaOHYgWf1JWZpvW+JpW1c0ZUeOtJVMHHzWbNZwtXsvi6RRdjoG4kN0Cdu7i4ecw7Kya7Zmt9od2i5ADeJTmQ08t9mbKFyL3bpBqL1IV0o67aevdzrYXMVik5RWP8xV5UEfvoxDMarkpB9uDEwIcl+f+EO11F3Ke+3SfT5/P+Yji7JqqRLlOASLAzsFKpke8MssMSna7Xn78dzY/hMLpMdAOEiU0RDU+vwYBvGx9A9Ugf3pgHYSsUh6EU1bQRL5lNtrtbl49EA0Ar+ytDfBqsaTbGZZaLcf52UKgXNVFJ0zAjBmCAHFyLQlQyb8f7M0wp/ypIQd+ivY10RT++gL5mDCP0wOZ5Gdj8DO2fCFsBRXxCNbFB9LtXq9L0zKAMkBNmDAKoq3TuVpBkmqAk9GMH"
 }
