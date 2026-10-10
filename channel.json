@@ -2,25 +2,25 @@
   "payload": {
     "format": 1,
     "product": "ONAX_TECHMINER",
-    "version": "0.5.1",
-    "sequence": 9,
+    "version": "0.5.2",
+    "sequence": 10,
     "min_python": [
       3,
       10
     ],
-    "artifact_url": "https://raw.githubusercontent.com/onaxstore-bot/onax-updates/main/ONAX_Release_0.5.1.zip",
+    "artifact_url": "https://raw.githubusercontent.com/onaxstore-bot/onax-updates/main/ONAX_Release_0.5.2.zip",
     "files": {
       "app/README.md": {
-        "size": 5112,
-        "sha256": "0657ce3650cdfade2344adbe26345351a83779463d1bc013080f941e138505ce"
+        "size": 6085,
+        "sha256": "86c4aa0d8b021d208881eade16860ca66dd9e21ee501581b53742a465fd2602c"
       },
       "app/cj_client.py": {
-        "size": 8743,
-        "sha256": "31133fc51de29b066fb5fc7b25f385e5704945ca5b7252d07d3e715ca9fb649c"
+        "size": 11209,
+        "sha256": "fba559ee0788f3e1dbfa3ec01ee0685686de4e326ff3d82ec7b7de28515e16a5"
       },
       "app/commercial_research.py": {
-        "size": 4223,
-        "sha256": "25b17cfb94cc9a11fe2a8a379d09edc1dbee1c55319d7cd1b1477208246c5268"
+        "size": 4284,
+        "sha256": "133a05af2918bfe6511f3f6f39c5c18365e251217da7813ab95d63bc82866e88"
       },
       "app/consultar_cj.py": {
         "size": 4467,
@@ -35,12 +35,12 @@
         "sha256": "f89acf2c1ef37beb91edd51dfbdba75f2051482630750df54206a51ce7865f68"
       },
       "app/mining_cj.py": {
-        "size": 7760,
-        "sha256": "3de27f47a001273954a03a73454d32e503236c542681a14de13e5f943d4f78d2"
+        "size": 8707,
+        "sha256": "d6d569a0402dc074c1d5fb018530e91f555cdaab174a44682a55e66173f93045"
       },
       "app/mining_runtime.py": {
-        "size": 10355,
-        "sha256": "8e9d807955affa7bbd1cc60562375100f0cc6b5f7a10f5899e49369b8135f5c4"
+        "size": 12088,
+        "sha256": "bdf7dc482771d29ce1102e83b4a428b26e4ccc563091aee2ca8fd2b40ec717ef"
       },
       "app/pesquisa_multiplataforma.json": {
         "size": 14,
@@ -60,7 +60,7 @@
       },
       "app/release_health.py": {
         "size": 536,
-        "sha256": "5e5554134c0f135099d33fe1bd1dea92c120790a6eee86d355c26152a389a4ea"
+        "sha256": "486a21813294600dee562ae28b757ed06a7bb695f95b34a1db71d1ff4fea2158"
       },
       "app/shopify_snapshot.json": {
         "size": 12,
@@ -69,6 +69,10 @@
       "app/tests/test_cj_client.py": {
         "size": 4252,
         "sha256": "c5af8056c9037adaca3d842fb2a7202adeb1edfd79db93f85bce5197271bc8ee"
+      },
+      "app/tests/test_cj_failures.py": {
+        "size": 7274,
+        "sha256": "ed2aec6fcaaba225885efc77e4a371abb5efa62e1fe960702447a321dd2a95a1"
       },
       "app/tests/test_commercial_research.py": {
         "size": 3839,
@@ -108,5 +112,5 @@
       }
     }
   },
-  "signature": "WUt8qQP97nJ0AoLKu8IA/1o8VHsP4PIDtVgvSqdWOxo804LjOFHGUD36+N+Dfc15GZEBM2SMqz5ufrPK90YOpZny3/FS1kHJujJR2cJ6O3R0LaOHYgWf1JWZpvW+JpW1c0ZUeOtJVMHHzWbNZwtXsvi6RRdjoG4kN0Cdu7i4ecw7Kya7Zmt9od2i5ADeJTmQ08t9mbKFyL3bpBqL1IV0o67aevdzrYXMVik5RWP8xV5UEfvoxDMarkpB9uDEwIcl+f+EO11F3Ke+3SfT5/P+Yji7JqqRLlOASLAzsFKpke8MssMSna7Xn78dzY/hMLpMdAOEiU0RDU+vwYBvGx9A9Ugf3pgHYSsUh6EU1bQRL5lNtrtbl49EA0Ar+ytDfBqsaTbGZZaLcf52UKgXNVFJ0zAjBmCAHFyLQlQyb8f7M0wp/ypIQd+ivY10RT++gL5mDCP0wOZ5Gdj8DO2fCFsBRXxCNbFB9LtXq9L0zKAMkBNmDAKoq3TuVpBkmqAk9GMH"
+  "signature": "h/81BDD56JIdjfSoO7uUzN78dPvYWqoUAjxwTYqO7pkfSk72vnTNavkEhdf4gKQoJuxcEsoabn8ed65KtXSVbHqu5amuloH9Yhxmd7cL6GW0Y/unEiAUrN4uGBLJKfqFDf1mzR0YNEMWUzuyosYYWcMnD5xcS1lWfovLRFHnJoUtXHba0Ae+KCD2qnPZXvHja/uPBoGdx72DJnmV15MbstnC89qcE3BMwAAaAh/5sVeKHPQk41qmzqLwCV81zfsRW8iNpT5G4a0g+M2Jyrkc2nVd/m4xs+Nx9S+SPeiopNiwB6To9p2KTecSTIFU1rAsR2yQVL08cFtAM2B7bh/oM3IGC1kaNh2djg3wm6WxjaGJdpdc7mShzm/5RLM9Oz2pPtkU3eH14NDDO+iIhUasb3dUc+fiIpqv2F+LZYqfJ6N1f+gIb20sSxhBeEH0YVDb2M3DQJ7NxMQ5DY0B21oiZRk/TtIxvtlW8X6+pgyZwx8Z38Dx4tUftrSJUcXRF9IM"
 }
