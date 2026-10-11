@@ -1,4 +1,4 @@
-# ONAX TechMiner 0.5.2 — descoberta CJ
+# ONAX TechMiner 0.5.3 — descoberta CJ
 
 O atalho existente ONAX - Consultar CJ passa a ativar a descoberta de produtos CJ no Windows. Na primeira execução, pede a API Key em campo oculto e explica seu armazenamento cifrado por DPAPI para a conta atual do Windows. A chave só é salva depois de aceita pela CJ. Nenhuma chave entra no repositório ou nos relatórios.
 
@@ -22,7 +22,7 @@ O agendamento também tem um início por horário em seis horas após a ativaç�
 
 A rodada seguinte avança somente após conclusão sem erro. O relatório anterior é preservado como mineracao_cj_anterior.json. O painel mostra origem e estoque pronto da rota. Credenciais, configuração e relatórios existentes permanecem separados da atualização.
 
-Verificação offline: 82 testes (um teste DPAPI específico do Windows executa no HP antes da aplicação da atualização). A presença de estoque não aprova margem, produto ou entrega.
+Verificação offline: 91 testes (um teste DPAPI específico do Windows executa no HP antes da aplicação da atualização). A presença de estoque não aprova margem, produto ou entrega.
 
 
 Versão 0.5.1: custos comerciais e amostra de frete
@@ -41,3 +41,10 @@ Versão 0.5.2: diagnóstico de interrupções
 O relatório identifica a etapa, código numérico CJ, HTTP e motivo local da falha. Não salva mensagens do servidor, credenciais ou URLs em diagnósticos. Códigos de produto/variante ausente ou retirado descartam somente aquele candidato. Limites, acesso desativado, pontos insuficientes e erros de parâmetros interrompem a rodada, sem tentativas imediatas e sem compra de créditos. A amostra de frete por CEP também mantém seu diagnóstico seguro.
 
 A última rodada concluída fica separada em data/mineracao_cj_ultima_concluida.json, mesmo após falhas consecutivas. Esse arquivo é histórico, não confirmação de estoque atual. Relatórios anteriores existentes continuam preservados. O campo agent_version confirma a versão que realmente gerou o relatório.
+
+
+Versão 0.5.3: auditoria da conexão CJ/Shopify
+
+Após a rodada e a amostra de frete sem falhas, consulta a loja autorizada e os vínculos de produtos pela API oficial da CJ, reutilizando a autenticação local. Até três GETs adicionais. Exige correspondência exata do identificador público da ONAX; não escolhe a loja API padrão nem lojas ambíguas. Até dez produtos e cem vínculos por rodada; resultados maiores são explicitamente parciais. Diagnóstico e vínculos ficam apenas no relatório local. Nenhum relatório ou credencial é enviado ao GitHub ou ao ChatGPT. Esta auditoria não cria conexões, não publica produtos e não processa pedidos ou pagamentos. Não confirma execução no HP até haver um relatório da versão instalada.
+
+Referência: https://developers.cjdropshipping.com/en/api/api2/api/shop.html
