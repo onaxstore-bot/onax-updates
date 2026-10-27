@@ -19,6 +19,31 @@ from cofre_windows import load, save
 from agendar_windows import NS, build_xml, current_sid
 
 
+def wait_for_window(title, timeout=15):
+    import ctypes
+    from ctypes import wintypes
+    user32 = ctypes.WinDLL('user32', use_last_error=True)
+    user32.FindWindowW.argtypes = (wintypes.LPCWSTR, wintypes.LPCWSTR)
+    user32.FindWindowW.restype = wintypes.HWND
+    deadline = time.monotonic() + timeout
+    while time.monotonic() < deadline:
+        hwnd = user32.FindWindowW(None, title)
+        if hwnd:
+            return hwnd
+        time.sleep(0.1)
+    raise AssertionError('Janela não encontrada: ' + title)
+
+
+def close_window(hwnd):
+    import ctypes
+    from ctypes import wintypes
+    post = ctypes.WinDLL('user32', use_last_error=True).PostMessageW
+    post.argtypes = (wintypes.HWND, wintypes.UINT, wintypes.WPARAM, wintypes.LPARAM)
+    post.restype = wintypes.BOOL
+    if not post(hwnd, 0x0010, 0, 0):
+        raise AssertionError('Não foi possível fechar a janela de teste.')
+
+
 @unittest.skipUnless(os.name == 'nt', 'Requires real Windows DPAPI and filesystem')
 class WindowsIntegrationTests(unittest.TestCase):
     def test_real_dpapi_round_trip_and_no_overwrite(self):
@@ -78,6 +103,44 @@ class WindowsIntegrationTests(unittest.TestCase):
             self.assertEqual(avisar_monitor.main(['--dados', temp]), 0)
             show.assert_called_once()
             self.assertIn('falhou', show.call_args.args[1])
+
+    def test_real_warning_window_opens_and_closes(self):
+        with tempfile.TemporaryDirectory() as temp:
+            data = Path(temp)
+            (data / 'status.json').write_text(json.dumps({'state': 'FALHOU',
+                'finished_at': datetime.now().astimezone().isoformat(), 'alerts': []}), encoding='utf-8')
+            proc = subprocess.Popen([str(Path(sys.executable).with_name('pythonw.exe')),
+                                     str(ROOT / 'app' / 'avisar_monitor.py'), '--dados', str(data)])
+            try:
+                hwnd = wait_for_window('TechMiner ONAX')
+                close_window(hwnd)
+                self.assertEqual(proc.wait(timeout=10), 0)
+            finally:
+                if proc.poll() is None:
+                    proc.terminate()
+                    proc.wait(timeout=10)
+
+    def test_beta_installer_and_launcher_open_the_panel(self):
+        with tempfile.TemporaryDirectory() as temp:
+            env = dict(os.environ, LOCALAPPDATA=temp)
+            result = subprocess.run([sys.executable, str(ROOT / 'beta_setup.py')], env=env,
+                                    capture_output=True, timeout=90)
+            self.assertEqual(result.returncode, 0, repr(result.stderr))
+            hwnd = wait_for_window('TechMiner ONAX — Monitor beta')
+            close_window(hwnd)
+            deadline = time.monotonic() + 10
+            import ctypes
+            while ctypes.windll.user32.FindWindowW(None, 'TechMiner ONAX — Monitor beta') and time.monotonic() < deadline:
+                time.sleep(0.1)
+            launcher = Path(temp) / 'TechMiner-ONAX-Beta' / 'Abrir-TechMiner-Beta.cmd'
+            self.assertTrue(launcher.is_file())
+            result = subprocess.run(['cmd.exe', '/c', str(launcher)], env=env, capture_output=True, timeout=15)
+            self.assertEqual(result.returncode, 0, repr(result.stderr))
+            hwnd = wait_for_window('TechMiner ONAX — Monitor beta')
+            close_window(hwnd)
+            deadline = time.monotonic() + 10
+            while ctypes.windll.user32.FindWindowW(None, 'TechMiner ONAX — Monitor beta') and time.monotonic() < deadline:
+                time.sleep(0.1)
 
     def test_monitor_full_flow_with_real_vault_and_simulated_services(self):
         from coletar_conciliacao import ShopifyReader, PRODUCTS, VARIANTS
