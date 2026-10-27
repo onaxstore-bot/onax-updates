@@ -17,4 +17,4 @@ jobs:
       - name: Application checks
         run: python app/release_health.py
       - name: Installer and Windows checks
-        run: python -m unittest test_beta_setup test_windows_integration -v
+        run: python -m unittest test_build_beta test_beta_setup test_windows_integration -v

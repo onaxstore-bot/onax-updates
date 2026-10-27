@@ -15,6 +15,7 @@ from unittest.mock import patch, MagicMock
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT / 'app'))
 from beta_setup import install_beta
+from build_beta import build
 from cofre_windows import load, save
 from agendar_windows import NS, build_xml, current_sid
 
@@ -132,7 +133,28 @@ class WindowsIntegrationTests(unittest.TestCase):
             import ctypes
             while ctypes.windll.user32.FindWindowW(None, 'TechMiner ONAX — Monitor beta') and time.monotonic() < deadline:
                 time.sleep(0.1)
-            launcher = Path(temp) / 'TechMiner-ONAX-Beta' / 'Abrir-TechMiner-Beta.cmd'
+
+    def test_packaged_beta_installer_opens_panel(self):
+        import ctypes
+        import zipfile
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            archive = build(root / 'beta.zip')
+            unpacked = root / 'extracted'
+            with zipfile.ZipFile(archive) as package:
+                package.extractall(unpacked)
+            env = dict(os.environ, LOCALAPPDATA=str(root / 'user'))
+            result = subprocess.run(['cmd.exe', '/c', str(unpacked / 'INSTALAR-BETA.cmd')], env=env,
+                                    stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL,
+                                    stderr=subprocess.DEVNULL, timeout=90)
+            self.assertEqual(result.returncode, 0)
+            hwnd = wait_for_window('TechMiner ONAX — Monitor beta')
+            close_window(hwnd)
+            deadline = time.monotonic() + 10
+            while ctypes.windll.user32.FindWindowW(None, 'TechMiner ONAX — Monitor beta') and time.monotonic() < deadline:
+                time.sleep(0.1)
+            self.assertTrue((root / 'user' / 'TechMiner-ONAX-Beta' / 'app' / 'painel_beta.py').is_file())
+            launcher = root / 'user' / 'TechMiner-ONAX-Beta' / 'Abrir-TechMiner-Beta.cmd'
             self.assertTrue(launcher.is_file())
             result = subprocess.run(['cmd.exe', '/c', str(launcher)], env=env,
                                     stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=15)
