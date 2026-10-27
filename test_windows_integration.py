@@ -7,6 +7,7 @@ import time
 import unittest
 import uuid
 import xml.etree.ElementTree as ET
+from datetime import datetime, timedelta
 from pathlib import Path
 from unittest.mock import patch
 
@@ -67,6 +68,45 @@ class WindowsIntegrationTests(unittest.TestCase):
         with patch.object(tk.Tk, 'mainloop', check_and_close):
             self.assertEqual(painel_beta.main(), 0)
         self.assertTrue({'Configurar monitor', 'Verificar agora', 'Atualizar estado'}.issubset(texts))
+
+    def test_notification_path_shows_expected_warning(self):
+        import avisar_monitor
+        with tempfile.TemporaryDirectory() as temp, \
+             patch('avisar_monitor.inspect', return_value={'current': 'FALHOU', 'alerts': []}), \
+             patch('tkinter.messagebox.showwarning') as show:
+            self.assertEqual(avisar_monitor.main(['--dados', temp]), 0)
+            show.assert_called_once()
+            self.assertIn('falhou', show.call_args.args[1])
+
+    def test_scheduled_time_fires_automatically(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            marker = root / 'automatic.txt'
+            script = root / 'automatic_job.py'
+            script.write_text('from pathlib import Path\nPath(%r).write_text("ok")\n' % str(marker), encoding='utf-8')
+            name = 'TechMiner-Test-Auto-' + uuid.uuid4().hex
+            xml = build_xml(sid=current_sid(), executable=Path(sys.executable).with_name('pythonw.exe'),
+                            job=script, directory=root, vault=root / 'dummy.dat',
+                            cj_shop='123', domain='example.myshopify.com')
+            tree = ET.fromstring(xml)
+            triggers = tree.find('{%s}Triggers' % NS)
+            calendar = triggers.find('{%s}CalendarTrigger' % NS)
+            calendar.find('{%s}StartBoundary' % NS).text = (datetime.now() + timedelta(seconds=20)).strftime('%Y-%m-%dT%H:%M:%S')
+            triggers.remove(triggers.find('{%s}LogonTrigger' % NS))
+            taskfile = root / 'automatic.xml'
+            taskfile.write_bytes(ET.tostring(tree, encoding='utf-16', xml_declaration=True))
+            create = subprocess.run(['schtasks.exe', '/Create', '/TN', name, '/XML', str(taskfile)],
+                                    capture_output=True, timeout=20)
+            self.assertEqual(create.returncode, 0, 'Falha ao criar tarefa temporária: ' + repr(create.stderr))
+            try:
+                deadline = time.monotonic() + 50
+                while not marker.exists() and time.monotonic() < deadline:
+                    time.sleep(0.2)
+                self.assertTrue(marker.is_file(), 'Tarefa automática não foi iniciada no intervalo esperado.')
+                self.assertEqual(marker.read_text(), 'ok')
+            finally:
+                deleted = subprocess.run(['schtasks.exe', '/Delete', '/TN', name, '/F'], capture_output=True, timeout=20)
+                self.assertEqual(deleted.returncode, 0, 'Tarefa temporária não foi removida.')
 
     def test_temporary_scheduled_task_can_run_and_is_removed(self):
         with tempfile.TemporaryDirectory() as temp:
