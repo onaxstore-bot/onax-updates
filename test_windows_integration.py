@@ -1,5 +1,6 @@
 """Windows checks using temporary test files and a uniquely named temporary task."""
 import os
+import json
 import subprocess
 import sys
 import tempfile
@@ -9,7 +10,7 @@ import uuid
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import patch, MagicMock
 
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT / 'app'))
@@ -77,6 +78,52 @@ class WindowsIntegrationTests(unittest.TestCase):
             self.assertEqual(avisar_monitor.main(['--dados', temp]), 0)
             show.assert_called_once()
             self.assertIn('falhou', show.call_args.args[1])
+
+    def test_monitor_full_flow_with_real_vault_and_simulated_services(self):
+        from coletar_conciliacao import ShopifyReader, PRODUCTS, VARIANTS
+        from inventario_automatico import QUERY
+        from pedidos_monitor import ORDERS
+        from monitor_conciliacao import main as monitor_main
+        domain = 'example.myshopify.com'
+        page = {'hasNextPage': False, 'endCursor': None}
+        def transport(query, variables):
+            if query == PRODUCTS:
+                return {'shop': {'myshopifyDomain': domain}, 'products': {'nodes': [
+                    {'id': 'gid://shopify/Product/1', 'title': 'Example', 'status': 'ACTIVE',
+                     'variantsCount': {'count': 1}}], 'pageInfo': page}}
+            if query == VARIANTS:
+                return {'productVariants': {'nodes': [{'id': 'gid://shopify/ProductVariant/2', 'sku': 'TEST-SKU',
+                    'product': {'id': 'gid://shopify/Product/1'}}], 'pageInfo': page}}
+            if query == QUERY:
+                return {'productVariant': {'id': 'gid://shopify/ProductVariant/2', 'sku': 'TEST-SKU',
+                    'inventoryItem': {'inventoryLevels': {'nodes': [{'location': {'id': 'loc', 'name': 'cjdropshipping'},
+                      'quantities': [{'name': 'available', 'quantity': 5}, {'name': 'committed', 'quantity': 0}]}],
+                      'pageInfo': page}}}}
+            if query == ORDERS:
+                return {'orders': {'nodes': [{'id': 'gid://shopify/Order/1', 'name': '#9001', 'test': True,
+                    'tags': ['ONAX-TESTE'], 'displayFinancialStatus': 'PAID', 'displayFulfillmentStatus': 'ON_HOLD'}],
+                    'pageInfo': page}}
+            raise AssertionError('Unexpected query')
+        shopify = ShopifyReader(domain, 'fake-token', transport=transport)
+        cj = MagicMock()
+        cj.connections.return_value = {'total': 1, 'list': [{'shopId': '12', 'platformProductId': '1',
+            'platformVariantId': '2', 'platformSku': 'TEST-SKU', 'cjSku': 'TEST-SKU',
+            'cjVariantId': 'v', 'cjProductId': 'p'}]}
+        cj.stock.return_value = [{'countryCode': 'US', 'cjInventoryNum': 5, 'factoryInventoryNum': 0}]
+        cj.orders.return_value = {'total': 0, 'list': []}
+        with tempfile.TemporaryDirectory() as temp:
+            data, vault = Path(temp) / 'data', Path(temp) / 'vault'
+            save(vault, 'fake-token', 'fake-key')
+            with patch('monitor_conciliacao.ShopifyReader', return_value=shopify), \
+                 patch('monitor_conciliacao.CJClient', return_value=cj):
+                result = monitor_main(['--dados', str(data), '--cofre', str(vault), '--loja-cj', '12', '--dominio', domain])
+            self.assertEqual(result, 0)
+            status = json.loads((data / 'status.json').read_text(encoding='utf-8'))
+            self.assertEqual(status['state'], 'CONCLUIDO')
+            report = json.loads((data / status['report_file']).read_text(encoding='utf-8'))
+            self.assertEqual(report['inventory_scan']['results'][0]['status'], 'COINCIDE')
+            self.assertEqual(report['orders_scan']['orders'][0]['status'], 'TESTE_OU_PROTEGIDO')
+            self.assertFalse(report['write_allowed'])
 
     def test_scheduled_time_fires_automatically(self):
         with tempfile.TemporaryDirectory() as temp:
