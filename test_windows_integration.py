@@ -8,6 +8,7 @@ import unittest
 import uuid
 import xml.etree.ElementTree as ET
 from pathlib import Path
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT / 'app'))
@@ -47,6 +48,25 @@ class WindowsIntegrationTests(unittest.TestCase):
             root.update_idletasks()
         finally:
             root.destroy()
+
+    def test_panel_opens_with_expected_controls(self):
+        import tkinter as tk
+        import painel_beta
+        texts = []
+        def check_and_close(window):
+            def visit(widget):
+                if widget.winfo_class() == 'TButton':
+                    texts.append(widget.cget('text'))
+                for child in widget.winfo_children():
+                    visit(child)
+            try:
+                window.update_idletasks()
+                visit(window)
+            finally:
+                window.destroy()
+        with patch.object(tk.Tk, 'mainloop', check_and_close):
+            self.assertEqual(painel_beta.main(), 0)
+        self.assertTrue({'Configurar monitor', 'Verificar agora', 'Atualizar estado'}.issubset(texts))
 
     def test_temporary_scheduled_task_can_run_and_is_removed(self):
         with tempfile.TemporaryDirectory() as temp:
