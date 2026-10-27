@@ -124,7 +124,7 @@ class WindowsIntegrationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             env = dict(os.environ, LOCALAPPDATA=temp)
             result = subprocess.run([sys.executable, str(ROOT / 'beta_setup.py')], env=env,
-                                    capture_output=True, timeout=90)
+                                    stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=90)
             self.assertEqual(result.returncode, 0, repr(result.stderr))
             hwnd = wait_for_window('TechMiner ONAX — Monitor beta')
             close_window(hwnd)
@@ -134,7 +134,8 @@ class WindowsIntegrationTests(unittest.TestCase):
                 time.sleep(0.1)
             launcher = Path(temp) / 'TechMiner-ONAX-Beta' / 'Abrir-TechMiner-Beta.cmd'
             self.assertTrue(launcher.is_file())
-            result = subprocess.run(['cmd.exe', '/c', str(launcher)], env=env, capture_output=True, timeout=15)
+            result = subprocess.run(['cmd.exe', '/c', str(launcher)], env=env,
+                                    stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=15)
             self.assertEqual(result.returncode, 0, repr(result.stderr))
             hwnd = wait_for_window('TechMiner ONAX — Monitor beta')
             close_window(hwnd)
