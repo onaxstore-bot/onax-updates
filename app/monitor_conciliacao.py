@@ -24,12 +24,12 @@ class MonitorError(ValueError):
 def run_lock(directory):
     directory.mkdir(parents=True, exist_ok=True)
     lock = (directory / 'monitor.lock').open('a+b')
-    lock.seek(0)
-    if not lock.read(1):
-        lock.write(b'0')
-        lock.flush()
-    lock.seek(0)
     try:
+        lock.seek(0)
+        if not lock.read(1):
+            lock.write(b'0')
+            lock.flush()
+        lock.seek(0)
         if os.name == 'nt':
             import msvcrt
             msvcrt.locking(lock.fileno(), msvcrt.LK_NBLCK, 1)
